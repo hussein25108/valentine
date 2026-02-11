@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mira ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(180deg,#fff5f8,#ffeaf2);
+    color:#444;
+    text-align:center;
+    overflow-x:hidden;
+}
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255,182,193,0.25), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(255,192,203,0.25), transparent 40%);
+    animation:moveGlow 14s infinite alternate ease-in-out;
+    z-index:-2;
+}
+@keyframes moveGlow{
+    from{transform:translate(-10%,-10%)}
+    to{transform:translate(10%,10%)}
+}
+.hearts{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+.hearts::before,
+.hearts::after{
+    content:"💗 💕 💖 💘 💓 💞 💝";
+    position:absolute;
+    font-size:30px;
+    animation:floatHearts 15s linear infinite;
+    white-space:nowrap;
+    opacity:0.9;
+}
+.hearts::after{
+    top:50%;
+    animation-duration:22s;
+    font-size:25px;
+    opacity:0.8;
+}
+@keyframes floatHearts{
+    from{transform:translateY(110vh)}
+    to{transform:translateY(-130vh)}
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:70px 20px;
+}
+h1,h2{
+    font-family:'Playfair Display',serif;
+    color:#d6336c;
+}
+.main-btn{
+    background:linear-gradient(45deg,#ff6b9d,#d6336c);
+    color:white;
+    border:none;
+    padding:16px 40px;
+    border-radius:50px;
+    font-size:17px;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(214,51,108,0.35);
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+}
+.main-btn::after{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle, rgba(255,255,255,0.35), transparent 60%);
+    animation:pulse 2.5s infinite;
+}
+@keyframes pulse{
+    0%{transform:scale(0)}
+    50%{transform:scale(1)}
+    100%{transform:scale(0)}
+}
+.main-btn:hover{transform:scale(1.1);}
+input{
+    padding:14px;
+    border-radius:30px;
+    border:1px solid #f3c2d1;
+    width:260px;
+    text-align:center;
+    font-size:15px;
+}
+.hero{padding-top:120px;}
+.small{opacity:0.7;font-size:15px;}
+#error{margin-top:12px;color:#d6336c;}
+#siteContent{display:none}
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin-top:40px;
+}
+.photo-item img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+    transition:0.4s;
+}
+.photo-item img:hover{transform:scale(1.05);}
+.caption{
+    margin-top:10px;
+    font-size:15px;
+    opacity:0.8;
+    text-align:center;
+}
+.slider{
+    position:relative;
+    max-width:700px;
+    margin:60px auto;
+}
+.slide{
+    display:none;
+    animation:fade 1.3s ease-in-out;
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.slide img{
+    width:100%;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+.slide-caption{
+    text-align:center;
+    margin-top:8px;
+    font-size:15px;
+    opacity:0.8;
+}
+.nav-btn{
+    cursor:pointer;
+    position:absolute;
+    top:45%;
+    background:white;
+    border:none;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    font-size:22px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+.prev{left:-25px}
+.next{right:-25px}
+.letter{
+    background:white;
+    padding:45px;
+    border-radius:30px;
+    margin-top:70px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.1);
+    text-align:left;
+    line-height:1.9;
+    font-size:16px;
+    min-height:260px;
+}
+footer{margin-top:70px;opacity:0.6;font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<audio id="heartbeatSound">
+  <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_884fe92c07.mp3?filename=heartbeat-01-7256.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container hero" id="passwordPage">
+    <h1>💌 Before you enter</h1>
+    <p class="small">
+        This little space holds memories, feelings, and a heart that chose you.<br>
+        Only you should open it.
+    </p>
+    <input type="password" id="passwordInput" placeholder="nickname">
+    <br><br>
+    <button class="main-btn" onclick="checkPassword()">Open My Heart 💗</button>
+    <p id="error"></p>
+</div>
+
+<div id="siteContent">
+<div class="container">
+
+<h1>Happy Valentine’s Day ❤️</h1>
+<p>Everything here exists because of you.</p>
+
+<div class="music" style="margin-top:30px;">
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4iV5W9uYEdYUVa79Axb7Rh?utm_source=generator" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+
+<h2>Our Favorite Moments</h2>
+
+<div class="photo-grid">
+<div class="photo-item"><img src="images/pic (4).jpeg"><div class="caption">My favorite place is next to you</div></div>
+<div class="photo-item"><img src="images/pic (7).jpeg"><div class="caption">One of my favorite memories with you</div></div>
+<div class="photo-item"><img src="images/pic (3).jpeg"><div class="caption">A moment I’ll always keep</div></div>
+<div class="photo-item"><img src="images/pic (1).jpeg"><div class="caption">You looked perfect here</div></div>
+</div>
+
+<h2>More Memories</h2>
+
+<div class="slider">
+<div class="slide"><img src="images/pic (2).jpeg"><div class="slide-caption">Every moment with you feels special</div></div>
+<div class="slide"><img src="images/pic (9).jpeg"><div class="slide-caption">I’d relive this day again</div></div>
+<div class="slide"><img src="images/pic (10).jpeg"><div class="slide-caption">Grateful having you by my side</div></div>
+<button class="nav-btn prev" onclick="changeSlide(-1)">❤️</button>
+<button class="nav-btn next" onclick="changeSlide(1)">❤️</button>
+</div>
+
+<div class="letter">
+<h2>My Letter to You</h2>
+<p id="typedText"></p>
+</div>
+
+<footer>Made with love, only for you.</footer>
+
+</div>
+</div>
+
+<script>
+let currentSlide=0;
+let titleText="For Mira ❤️";
+let visible=true;
+setInterval(()=>{document.title=visible?titleText:"❤️"; visible=!visible;},1000);
+
+const letterText=` Hi miro miss you,
+      hyde a small  gift aw memory ma baaref shu tsameha
+      bas eno ma knt 3areef eza aade jeeb gift krml wd3na hl2
+      so hyde a small memory lmfrud ha frjeke yeha l mfrud 
+      bde elik bhbeek kteeer my penguin dymn
+      w dymn ur supporter ana shu ma 3mlte w always proud 
+      w bas hek ma ha kteer hake letter zghire.
+From the moment you came into my life, everything felt different.
+
+You brought a kind of peace and happiness I didn’t know I needed.
+
+I love the way you smile, the way you think, and the way you make life feel lighter.
+
+Thank you for being in my life, you make my days gentler and my heart calmer.
+      Loving you feels like home.
+Always yours 🤍
+Happy Valentine’s Day ❤️`;
+ 
+let index=0;
+function typeLetter(){if(index<letterText.length){document.getElementById("typedText").innerHTML+=letterText.charAt(index); index++; setTimeout(typeLetter,40);}}
+function showSlide(i){const slides=document.getElementsByClassName("slide"); if(i>=slides.length) currentSlide=0; if(i<0) currentSlide=slides.length-1; for(let s of slides){s.style.display="none";} slides[currentSlide].style.display="block";}
+setInterval(()=>{changeSlide(1)},12000);
+function changeSlide(n){currentSlide+=n; showSlide(currentSlide);}
+
+/* ✅ WORKING Heart confetti explosion */
+function createConfetti(){
+    for(let i=0;i<50;i++){
+        const confetti=document.createElement("div");
+        confetti.className="confetti";
+        confetti.innerText="💖";
+        confetti.style.position="fixed";
+        confetti.style.zIndex="9999";
+        confetti.style.pointerEvents="none";
+        confetti.style.fontSize=(20+Math.random()*20)+"px";
+        confetti.style.left=Math.random()*100+"vw";
+        confetti.style.top="-10px";
+        confetti.style.opacity=0.9;
+        const duration=3+Math.random()*2;
+        confetti.style.transition=`transform ${duration}s linear, opacity ${duration}s linear`;
+        document.body.appendChild(confetti);
+        // trigger the animation
+        setTimeout(()=>{ 
+            confetti.style.transform=`translateY(100vh) translateX(${Math.random()*100 - 50}px) rotate(${Math.random()*360}deg)`;
+            confetti.style.opacity=0;
+        },10);
+        setTimeout(()=>confetti.remove(), duration*1000);
+    }
+}
+
+function checkPassword(){
+    const password="penguin";
+    const input=document.getElementById("passwordInput").value.trim().toLowerCase();
+    if(input===password){
+        document.getElementById("heartbeatSound").play();
+        createConfetti();
+        document.getElementById("passwordPage").style.display="none";
+        document.getElementById("siteContent").style.display="block";
+        showSlide(0);
+        typeLetter();
+    }else{
+        document.getElementById("error").innerText="That heart isn’t yours… yet 💔";
+    }
+}
+</script>
+</body>
+</html>
